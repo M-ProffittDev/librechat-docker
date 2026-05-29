@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  api:
+    image: ghcr.io/danny-avila/librechat-dev:latest
+    container_name: LibreChat-API
+    ports:
+      - '3080:3080'
+    depends_on:
+      - mongodb
+    restart: always
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3080
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+    volumes:
+      - ./librechat.yaml:/app/librechat.yaml
+      - librechat-images:/app/client/public/images
+
+  mongodb:
+    image: mongo:latest
+    container_name: LibreChat-MongoDB
+    restart: always
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
+  librechat-images:
