@@ -14,7 +14,9 @@ services:
       - PORT=3080
       - MONGO_URI=mongodb://mongodb:27017/LibreChat
     volumes:
-      - ./librechat.yaml:/app/librechat.yaml
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
       - librechat-images:/app/client/public/images
 
   mongodb:
