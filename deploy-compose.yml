@@ -18,7 +18,7 @@ services:
       - librechat-images:/app/client/public/images
 
   mongodb:
-    image: mongo:latest
+    image: mongo:4.4
     container_name: LibreChat-MongoDB
     restart: always
     volumes:
